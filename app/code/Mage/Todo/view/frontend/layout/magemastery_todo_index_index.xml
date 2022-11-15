@@ -7,5 +7,10 @@
                 <argument translate="true" name="Title" xsi:type="string">My todo lst</argument>
             </action>
         </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="mage.todo.block.list"
+                   template="Mage_Todo::todo.phtml"/>
+        </referenceContainer>
     </body>
 </page>
