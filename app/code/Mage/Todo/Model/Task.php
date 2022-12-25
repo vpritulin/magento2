@@ -7,7 +7,7 @@ use Mage\Todo\Model\ResourceModel\Task as TaskResource;
 
 class Task extends AbstractModel
 {
-    protected function __construct()
+    protected function _construct()
     {
         $this->_init(TaskResource::class);
     }
