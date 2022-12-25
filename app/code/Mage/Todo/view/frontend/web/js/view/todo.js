@@ -1,16 +1,17 @@
 define([
     'uiComponent',
-    'jquery'
-], function (Component, $) {
+    'jquery',
+    'Magento_Ui/js/modal/confirm'
+], function (Component, $, modal) {
     'use strict';
 
     return Component.extend({
         defaults: {
             tasks: [
-                {id:1, label: "Task 1", status:false},
-                {id:2, label: "Task 2", status:false},
-                {id:3, label: "Task 3", status:false},
-                {id:4, label: "Task 4", status:true}
+                {id: 1, label: "Task 1", status: false},
+                {id: 2, label: "Task 2", status: false},
+                {id: 3, label: "Task 3", status: false},
+                {id: 4, label: "Task 4", status: true}
             ]
         },
         initObservable: function () {
@@ -19,33 +20,42 @@ define([
             return this;
         },
 
-        switchStatus:function (data,event) {
+        switchStatus: function (data, event) {
             const taskId = $(event.target).data('id');
 
-            let items = this.tasks.map(function (task){
-               if (task.id === taskId){
-                   task.status =!task.status;
-               }
-               return task;
+            let items = this.tasks.map(function (task) {
+                if (task.id === taskId) {
+                    task.status = !task.status;
+                }
+                return task;
             });
             this.tasks(items);
         },
 
         deleteTask: function (taskId) {
-          let tasks = [];
+            let self = this;
 
-          if (this.tasks().length === 1){
-              this.tasks(tasks);
-              return;
-          }
+            modal({
+                content: 'Are you sure you want to delete the task?',
+                actions: {
+                    confirm: function () {
+                        let tasks = [];
 
-          this.tasks().forEach(function (task) {
-              if (task.id !== taskId){
-                  tasks.push(task);
-              }
-          });
+                        if (self.tasks().length === 1) {
+                            self.tasks(tasks);
+                            return;
+                        }
 
-          this.tasks(tasks);
+                        self.tasks().forEach(function (task) {
+                            if (task.id !== taskId) {
+                                tasks.push(task);
+                            }
+                        });
+
+                        self.tasks(tasks);
+                    }
+                }
+            });
         }
     });
 });
