@@ -29,7 +29,7 @@ class CustomerTaskList implements CustomerTaskListInterface
     }
 
     /**
-     * @return array|TaskInterface[]|\Magento\Framework\Api\Search\DocumentInterface[]
+     * @return array|TaskInterface[]
      */
     public function getList()
     {
