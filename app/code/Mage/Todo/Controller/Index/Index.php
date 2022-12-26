@@ -70,7 +70,7 @@ class Index extends Action
         $this->taskManagement->save($task);
 
        $task = $this->taskRepository->getList($this->searchCriteriaBuilder->create())->getItems();
-       var_dump($task);
+       var_dump($this->taskRepository->getList($this->searchCriteriaBuilder->create())->getItems());
 //        $task = $this->taskFactory->create();
 //        $task->setData([
 //            'label'=>'New Task 22',

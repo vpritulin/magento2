@@ -9,5 +9,5 @@ interface CustomerTaskListInterface
     /**
      * @return TaskInterface[]
      */
-    public function getList(): array;
+    public function getList();
 }

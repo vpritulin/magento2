@@ -2,14 +2,14 @@
 
 namespace Mage\Todo\Api\Data;
 
-use Magento\Framework\Api\Search\SearchResultInterface;
+use Magento\Framework\Api\SearchResultsInterface;
 
 /**
  * @api
  */
-interface TaskSearchResultInterface extends SearchResultInterface
+interface TaskSearchResultInterface extends SearchResultsInterface
 {
-    public function getItems(): array;
+    public function getItems();
 
-    public function setItems(array $items): TaskSearchResultInterface;
+    public function setItems(array $items);
 }

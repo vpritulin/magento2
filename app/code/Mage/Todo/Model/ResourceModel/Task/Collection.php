@@ -40,7 +40,7 @@ class Collection extends AbstractCollection implements TaskSearchResultInterface
         return $this->searchCriteria;
     }
 
-    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria): Collection|static
+    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null)
     {
         $this->searchCriteria = $searchCriteria;
         return $this;
@@ -58,7 +58,7 @@ class Collection extends AbstractCollection implements TaskSearchResultInterface
      * @param $totalCount
      * @return $this|Collection
      */
-    public function setTotalCount($totalCount): Collection|static
+    public function setTotalCount($totalCount)
     {
         return $this;
     }
