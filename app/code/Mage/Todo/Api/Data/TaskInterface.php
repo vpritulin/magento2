@@ -2,8 +2,6 @@
 
 namespace Mage\Todo\Api\Data;
 
-use Magento\Tests\NamingConvention\true\string;
-
 /**
  * @api
  */
