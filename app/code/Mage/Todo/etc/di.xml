@@ -7,4 +7,5 @@
 
     <preference for="Mage\Todo\Api\Data\TaskSearchResultInterface" type="Mage\Todo\Model\ResourceModel\Task\Collection"/>
     <preference for="Mage\Todo\Api\CustomerTaskListInterface" type="Mage\Todo\Service\CustomerTaskList"/>
+    <preference for="Mage\Todo\Api\TaskStatusManagementInterface" type="Mage\Todo\Service\TaskStatusManagement"/>
 </config>

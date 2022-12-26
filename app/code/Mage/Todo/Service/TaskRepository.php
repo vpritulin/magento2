@@ -2,6 +2,7 @@
 
 namespace Mage\Todo\Service;
 
+use Mage\Todo\Api\Data\TaskInterface;
 use Mage\Todo\Api\Data\TaskSearchResultInterface;
 use Mage\Todo\Api\Data\TaskSearchResultInterfaceFactory;
 use \Mage\Todo\Api\TaskRepositoryInterface;
@@ -56,7 +57,7 @@ class TaskRepository implements TaskRepositoryInterface
         return $searchResult;
     }
 
-    public function get(int $tasksId): \Mage\Todo\Model\Task
+    public function get(int $tasksId):  TaskInterface
     {
         $object = $this->taskFactory->create();
         $this->resource->load($object, $tasksId);
