@@ -10,6 +10,7 @@ use Mage\Todo\Model\Task;
 use Mage\Todo\Model\ResourceModel\Task as TaskResource;
 use Mage\Todo\Model\TaskFactory;
 use Mage\Todo\Service\TaskRepository;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 class Index extends Action
 {
 
@@ -18,11 +19,20 @@ class Index extends Action
 
     private $taskRepository;
 
-    public function __construct(Context $context, TaskFactory $taskFactory, TaskResource $taskResource, TaskRepository $taskRepository)
+    private $searchCriteriaBuilder;
+
+    public function __construct(
+        Context $context,
+        TaskFactory $taskFactory,
+        TaskResource $taskResource,
+        TaskRepository $taskRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder
+    )
     {
         $this->taskFactory = $taskFactory;
         $this->taskResource = $taskResource;
         $this->taskRepository = $taskRepository;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         parent::__construct($context);
     }
 
@@ -31,7 +41,7 @@ class Index extends Action
      */
     public function execute()
     {
-       $task = $this->taskRepository->get(1);
+       $task = $this->taskRepository->getList($this->searchCriteriaBuilder->create())->getItems();
        var_dump($task->getData());
 //        $task = $this->taskFactory->create();
 //        $task->setData([
