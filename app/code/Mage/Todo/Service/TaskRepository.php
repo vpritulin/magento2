@@ -2,29 +2,58 @@
 
 namespace Mage\Todo\Service;
 
+use Mage\Todo\Api\Data\TaskSearchResultInterface;
+use Mage\Todo\Api\Data\TaskSearchResultInterfaceFactory;
 use \Mage\Todo\Api\TaskRepositoryInterface;
 use \Mage\Todo\Model\ResourceModel\Task;
 use \Mage\Todo\Model\TaskFactory;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
+
 class TaskRepository implements TaskRepositoryInterface
 {
     /**
-     * @var
+     * @var Task
      */
-    private $resource;
+    private Task $resource;
 
     /**
-     * @var
+     * @var TaskFactory
      */
-    private $taskFactory;
-    public function __construct(Task $resource, TaskFactory $taskFactory)
+    private TaskFactory $taskFactory;
+
+    /**
+     * @var TaskSearchResultInterfaceFactory
+     */
+    private TaskSearchResultInterfaceFactory $searchResultFactory;
+
+    /**
+     * @var CollectionProcessorInterface
+     */
+    private CollectionProcessorInterface $collectionProcessor;
+    public function __construct(
+        Task                             $resource,
+        TaskFactory                      $taskFactory,
+        CollectionProcessorInterface     $collectionProcessor,
+        TaskSearchResultInterfaceFactory $searchResultFactory
+    )
     {
         $this->resource = $resource;
         $this->taskFactory = $taskFactory;
+        $this->collectionProcessor = $collectionProcessor;
+        $this->searchResultFactory = $searchResultFactory;
     }
 
-    public function getList()
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return TaskSearchResultInterface
+     */
+    public function getList(SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface
     {
-        // TODO: Implement getList() method.
+        $searchResult = $this->searchResultFactory->create();
+        $searchResult->setSearchCriteria($searchCriteria);
+        $this->collectionProcessor->process($searchCriteria, $searchResult);
+        return $searchResult;
     }
 
     public function get(int $tasksId): \Mage\Todo\Model\Task
