@@ -56,9 +56,7 @@ class Index extends Action
         parent::__construct($context);
     }
 
-    /**
-     * @return ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
-     */
+
     public function execute()
     {
        $task = $this->taskRepository->getList($this->searchCriteriaBuilder->create())->getItems();
