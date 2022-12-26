@@ -1,23 +1,25 @@
 define([
     'uiComponent',
     'jquery',
-    'Magento_Ui/js/modal/confirm'
-], function (Component, $, modal) {
+    'Magento_Ui/js/modal/confirm',
+    'Mage_Todo/js/service/task'
+], function (Component, $, modal, taskService) {
     'use strict';
 
     return Component.extend({
         defaults: {
-            buttonSelector:'#add-new-task-button',
-            newTaskLabel:'',
-            tasks: [
-                {id: 1, label: "Task 1", status: false},
-                {id: 2, label: "Task 2", status: false},
-                {id: 3, label: "Task 3", status: false},
-                {id: 4, label: "Task 4", status: true}
-            ]
+            buttonSelector: '#add-new-task-button',
+            newTaskLabel: '',
+            tasks: []
         },
         initObservable: function () {
-            this._super().observe(['tasks','newTaskLabel']);
+            this._super().observe(['tasks', 'newTaskLabel']);
+
+            let self = this;
+            taskService.getList().then(function (tasks) {
+                self.tasks(tasks);
+                return this;
+            });
 
             return this;
         },
@@ -26,8 +28,8 @@ define([
             const taskId = $(event.target).data('id');
 
             let items = this.tasks.map(function (task) {
-                if (task.id === taskId) {
-                    task.status = !task.status;
+                if (task.task_id === taskId) {
+                    task.status = task.status === 'open' ? 'compleate' : 'open';
                 }
                 return task;
             });
@@ -49,7 +51,7 @@ define([
                         }
 
                         self.tasks().forEach(function (task) {
-                            if (task.id !== taskId) {
+                            if (task.task_id !== taskId) {
                                 tasks.push(task);
                             }
                         });
@@ -59,16 +61,16 @@ define([
                 }
             });
         },
-        addTask:function () {
+        addTask: function () {
             this.tasks.push({
-                id: Math.floor(Math.random()*100),
+                id: Math.floor(Math.random() * 100),
                 label: this.newTaskLabel(),
                 status: false
             });
             this.newTaskLabel('');
         },
-        checkKey:function (data,event) {
-            if (event.keyCode === 13){
+        checkKey: function (data, event) {
+            if (event.keyCode === 13) {
                 event.preventDefault();
                 $(this.buttonSelector).click();
             }
