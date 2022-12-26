@@ -36,7 +36,6 @@ ul.tasks li .status.complete {
 .form-container {
     margin: 0 20px 20px 20px;
     display: flex;
-
 }
 
 .form-container .task-input-field {
@@ -46,4 +45,8 @@ ul.tasks li .status.complete {
 
 .form-container .actions-toolbar {
     margin-left: 5px;
+}
+
+ul.tasks .delete:hover {
+    cursor: pointer;
 }
