@@ -20,21 +20,23 @@ class TaskManagement implements  TaskManagementInterface
 
     /**
      * @param TaskInterface $task
-     * @return void
+     * @return bool
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
-    public function save(TaskInterface $task)
+    public function save(TaskInterface $task): bool
     {
         $this->resource->save($task);
+        return true;
     }
 
     /**
      * @param TaskInterface $task
-     * @return void
+     * @return bool
      * @throws \Exception
      */
-    public function delete(TaskInterface $task)
+    public function delete(TaskInterface $task): bool
     {
         $this->resource->delete($task);
+        return true;
     }
 }

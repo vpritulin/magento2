@@ -2,6 +2,8 @@
 
 namespace Mage\Todo\Api\Data;
 
+use Magento\Tests\NamingConvention\true\string;
+
 /**
  * @api
  */
@@ -21,4 +23,22 @@ interface TaskInterface
      * @return string
      */
     public function getLabel(): string;
+
+    /**
+     * @param int $taskId
+     * @return void
+     */
+    public function setTaskId(int $taskId);
+
+    /**
+     * @param string $status
+     * @return void
+     */
+    public function setStatus(string $status);
+
+    /**
+     * @param string $label
+     * @return void
+     */
+    public function setLabel (string $label);
 }

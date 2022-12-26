@@ -43,4 +43,31 @@ class Task extends AbstractModel implements TaskInterface
     {
         return $this->getData(self::LABEL);
     }
+
+    /**
+     * @param int $taskId
+     * @return array|mixed|void|null
+     */
+    public function setTaskId(int $taskId)
+    {
+        return $this->getData(self::TASK_ID,$taskId);
+    }
+
+    /**
+     * @param string $status
+     * @return array|mixed|void|null
+     */
+    public function setStatus(string $status)
+    {
+        return $this->getData(self::STATUS, $status);
+    }
+
+    /**
+     * @param string $label
+     * @return array|mixed|void|null
+     */
+    public function setLabel(string $label)
+    {
+        return $this->getData(self::LABEL, $label);
+    }
 }
