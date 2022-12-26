@@ -14,13 +14,33 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 class Index extends Action
 {
 
-    private $taskResource;
-    private $taskFactory;
+    /**
+     * @var TaskResource
+     */
+    private TaskResource $taskResource;
 
-    private $taskRepository;
+    /**
+     * @var TaskFactory
+     */
+    private TaskFactory $taskFactory;
 
-    private $searchCriteriaBuilder;
+    /**
+     * @var TaskRepository
+     */
+    private TaskRepository $taskRepository;
 
+    /**
+     * @var SearchCriteriaBuilder
+     */
+    private SearchCriteriaBuilder $searchCriteriaBuilder;
+
+    /**
+     * @param Context $context
+     * @param TaskFactory $taskFactory
+     * @param TaskResource $taskResource
+     * @param TaskRepository $taskRepository
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     */
     public function __construct(
         Context $context,
         TaskFactory $taskFactory,
