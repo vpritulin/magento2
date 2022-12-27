@@ -2,8 +2,9 @@ define([
     'uiComponent',
     'jquery',
     'Magento_Ui/js/modal/confirm',
-    'Mage_Todo/js/service/task'
-], function (Component, $, modal, taskService) {
+    'Mage_Todo/js/service/task',
+    'Mage_Todo/js/model/loader'
+], function (Component, $, modal, taskService,loader) {
     'use strict';
 
     return Component.extend({
@@ -73,6 +74,7 @@ define([
                 label: this.newTaskLabel(),
                 status: 'open'
             };
+            loader.startLoader();
 
             taskService.create(task)
                 .then(function (taskId) {
@@ -80,6 +82,10 @@ define([
                     self.tasks.push(task)
                     self.newTaskLabel('')
                 })
+
+                .finally(function () {
+                    loader.stopLoader();
+                });
         },
         checkKey: function (data, event) {
             if (event.keyCode === 13) {
