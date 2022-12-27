@@ -1,5 +1,6 @@
 ul.tasks {
-    padding: 1.8rem;
+    margin-top: 2rem;
+    padding-left: 20px;
 }
 
 ul.tasks li {
@@ -20,8 +21,8 @@ ul.tasks li .status {
 }
 
 ul.tasks li .status:hover {
-    border: 2px solid #82cc78;
-    background: #82cc78;
+    border: 2px solid #88bae5;
+    background: #88bae5;
 }
 
 ul.tasks li .status.open {
@@ -29,8 +30,8 @@ ul.tasks li .status.open {
 }
 
 ul.tasks li .status.complete {
-    border: 2px solid #82cc78;
-    background: #82cc78;
+    border: 2px solid #4682B4;
+    background: #4682B4;
 }
 
 .form-container {
