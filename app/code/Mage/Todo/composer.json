@@ -1,0 +1,33 @@
+{
+    "name": "mage/todo",
+    "description": "Todo extenstion for m2",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladislav",
+            "email": "vpritulin@gomage.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "magento/framework": "*",
+        "magento/module-customer": "*",
+        "magento/module-ui": "*",
+        "magneto/module-webapi": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Mage\\Todo\\": ""
+        }
+    }
+}
